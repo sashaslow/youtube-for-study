@@ -3,9 +3,14 @@ import { connect } from 'react-redux';
 import SearchBar from './components/search_bar';
 import VideoDetail from './components/video_detail';
 import VideoList from './components/video_list';
+import ThemeButton from './components/theme_button';
 import Content from './Content';
+import { VideoContainer } from './styles/video_container';
 import { asyncGetTracks } from './actions/videos';
 import { setCurrentVideo } from './actions/current_video';
+import { ThemeProvider } from 'styled-components';
+import { light } from './styles/themes/light';
+import { dark } from './styles/themes/dark';
 
 
 import YTSearch from 'youtube-api-search';
@@ -24,13 +29,17 @@ class App extends Component {
   }
   render() {
     return (
-      <div>
-        <SearchBar />
+      <ThemeProvider theme={this.props.store.themes.isDark? dark : light}> 
         <Content>
-          <VideoDetail />
-          <VideoList />
+          <ThemeButton />
+          <SearchBar />  
+          <VideoContainer>
+            <VideoDetail />
+            <VideoList />  
+          </VideoContainer>
         </Content>
-      </div>
+      </ThemeProvider>
+
     );
   }
 }
