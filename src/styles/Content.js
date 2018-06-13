@@ -1,5 +1,5 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const Content = styled.div`
-background-color:  ${props => props.theme.main};
-`;
+  background-color: ${props => props.theme.main};
+`

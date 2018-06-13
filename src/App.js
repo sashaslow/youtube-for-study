@@ -1,46 +1,44 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import SearchBar from './components/search_bar';
-import VideoDetail from './components/video_detail';
-import VideoList from './components/video_list';
-import ThemeButton from './components/theme_button';
-import Content from './Content';
-import { VideoContainer } from './styles/video_container';
-import { asyncGetTracks } from './actions/videos';
-import { setCurrentVideo } from './actions/current_video';
-import { ThemeProvider } from 'styled-components';
-import { light } from './styles/themes/light';
-import { dark } from './styles/themes/dark';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import SearchBar from './components/search_bar'
+import VideoDetail from './components/video_detail'
+import VideoList from './components/video_list'
+import ThemeButton from './components/theme_button'
+import Content from './Content'
+import { VideoContainer } from './styles/video_container'
+import { asyncGetTracks } from './actions/videos'
+import { setCurrentVideo } from './actions/current_video'
+import { ThemeProvider } from 'styled-components'
+import { light } from './styles/themes/light'
+import { dark } from './styles/themes/dark'
 
+import YTSearch from 'youtube-api-search'
 
-import YTSearch from 'youtube-api-search';
-
-const API_KEY = 'AIzaSyCH4Xp6K_n7hUKDJHDW6CMt2R-LqDk0THU';
+const API_KEY = 'AIzaSyCH4Xp6K_n7hUKDJHDW6CMt2R-LqDk0THU'
 
 class App extends Component {
   constructor(props) {
-    super(props);
+    super(props)
   }
   componentWillMount() {
-    YTSearch({ key: API_KEY, term: 'deadmau5' }, (videos) => {
-      console.log(videos[0].snippet.title)
-      let vid = videos[0].snippet.title;
-    });
+    this.props.onGetTracks('Wittgenstein')
+    YTSearch({ key: API_KEY, term: 'Wittgenstein' }, videos => {
+      this.props.onChangeCurrentVideo(videos[0])
+    })
   }
   render() {
     return (
-      <ThemeProvider theme={this.props.store.themes.isDark? dark : light}> 
+      <ThemeProvider theme={this.props.store.themes.isDark ? dark : light}>
         <Content>
           <ThemeButton />
-          <SearchBar />  
+          <SearchBar />
           <VideoContainer>
             <VideoDetail />
-            <VideoList />  
+            <VideoList />
           </VideoContainer>
         </Content>
       </ThemeProvider>
-
-    );
+    )
   }
 }
 
@@ -49,11 +47,11 @@ export default connect(
     store: state,
   }),
   dispatch => ({
-    onGetTracks: (term) => {
-      dispatch(asyncGetTracks(term));
+    onGetTracks: term => {
+      dispatch(asyncGetTracks(term))
     },
-    onChangeCurrentVideo: (video) => {
-      dispatch(setCurrentVideo(video));
+    onChangeCurrentVideo: video => {
+      dispatch(setCurrentVideo(video))
     },
-  }),
-)(App);
+  })
+)(App)

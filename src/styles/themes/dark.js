@@ -1,3 +1,3 @@
 export const dark = {
-    main: '#1e1e1e'
-};
+  main: '#1e1e1e',
+}

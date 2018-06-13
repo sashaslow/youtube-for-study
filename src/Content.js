@@ -1,10 +1,9 @@
-import { connect } from 'react-redux';
-import { Content } from './styles/Content';
+import { connect } from 'react-redux'
+import { Content } from './styles/Content'
 
 export default connect(
   state => ({
     store: state,
   }),
-  dispatch => ({
-  }),
-)(Content);
+  dispatch => ({})
+)(Content)

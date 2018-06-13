@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const Input = styled.input`
   display: block;
@@ -12,4 +12,4 @@ export const Input = styled.input`
   outline: none;
   font-size: 18px;
   text-align: center;
-`;
+`

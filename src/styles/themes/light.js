@@ -1,3 +1,3 @@
 export const light = {
-    main: '#efefef'
-};
+  main: '#efefef',
+}
