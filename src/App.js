@@ -1,21 +1,50 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { connect } from 'react-redux';
+import SearchBar from './components/search_bar';
+import VideoDetail from './components/video_detail';
+import VideoList from './components/video_list';
+import Content from './Content';
+import { asyncGetTracks } from './actions/videos';
+import { setCurrentVideo } from './actions/current_video';
+
+
+import YTSearch from 'youtube-api-search';
+
+const API_KEY = 'AIzaSyCH4Xp6K_n7hUKDJHDW6CMt2R-LqDk0THU';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+  }
+  componentWillMount() {
+    YTSearch({ key: API_KEY, term: 'deadmau5' }, (videos) => {
+      console.log(videos[0].snippet.title)
+      let vid = videos[0].snippet.title;
+    });
+  }
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div>
+        <SearchBar />
+        <Content>
+          <VideoDetail />
+          <VideoList />
+        </Content>
       </div>
     );
   }
 }
 
-export default App;
+export default connect(
+  state => ({
+    store: state,
+  }),
+  dispatch => ({
+    onGetTracks: (term) => {
+      dispatch(asyncGetTracks(term));
+    },
+    onChangeCurrentVideo: (video) => {
+      dispatch(setCurrentVideo(video));
+    },
+  }),
+)(App);
