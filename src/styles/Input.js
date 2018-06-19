@@ -1,6 +1,7 @@
 import styled from 'styled-components'
+import {DebounceInput} from 'react-debounce-input';
 
-export const Input = styled.input`
+export const Input = styled(DebounceInput)`
   display: block;
   border-radius: 3px;
   padding: 0.25em 1em;

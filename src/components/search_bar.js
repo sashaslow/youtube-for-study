@@ -15,11 +15,13 @@ class SearchBar extends Component {
     super(props)
     this.state = { value: '' }
   }
+  
   render() {
     return (
       <div className="search-bar">
         <ThemeProvider theme={this.props.store.themes.isDark ? dark : light}>
           <ConnectedInput
+            debounceTimeout={500}
             placeholder="just type here something"
             value={this.state.value}
             onChange={event => this.onInputChange(event.target.value)}
@@ -28,7 +30,7 @@ class SearchBar extends Component {
       </div>
     )
   }
-  onInputChange(value) {
+  onInputChange (value) {
     this.setState({ value })
     this.props.onGetTracks(value)
   }
