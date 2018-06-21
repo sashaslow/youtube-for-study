@@ -1,0 +1,15 @@
+{
+  "short_name": "YouTube For Study",
+  "name": "YouTube For Study",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff",
+  "icons": [
+    {
+      "src": "/w32h321371488897youtube32.png",
+      "sizes": "32x32",
+      "type": "image\/png"
+    }
+  ]
+}
