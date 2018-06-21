@@ -14,7 +14,7 @@ export const Video = styled.div`
   padding: 5px;
   width: 250px;
   background-color: rgba(255, 255, 255, 0.1) black;
-  border: 3px solid;
+  border: 2px solid rgba(154, 154, 154, 1);
   cursor: pointer;
 `
 
@@ -25,6 +25,7 @@ export const VideosTitle = styled.li`
   padding-left: 10px;
   padding-right: 5px;
   max-width: 130px;
+  color: rgba(96, 96, 96, 1);
 `
 
 export const VideosImg = styled.img`

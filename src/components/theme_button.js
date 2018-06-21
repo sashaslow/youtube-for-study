@@ -1,19 +1,17 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { setTheme } from '../actions/themes'
+import { StyledThemeButton } from '../styles/theme_button'
 
 class ThemeButton extends Component {
-  constructor(props) {
-    super(props)
-  }
   render() {
     return (
-      <div
+      <StyledThemeButton
         onClick={themes =>
           this.props.onChangeTheme(!this.props.store.themes.isDark)
         }>
-        КНОПКА
-      </div>
+        {this.props.store.themes.isDark ? 'light' : 'dark'}
+      </StyledThemeButton>
     )
   }
 }

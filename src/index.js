@@ -7,13 +7,21 @@ import ReactDOM from 'react-dom'
 import App from './App'
 import reducer from './reducers'
 import registerServiceWorker from './registerServiceWorker'
+import baseStyles from './styles/index'
 
 const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)))
 
-ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById('root')
-)
+const render = () => {
+  baseStyles()
+
+  ReactDOM.render(
+    <Provider store={store}>
+      <App />
+    </Provider>,
+    document.getElementById('root')
+  )
+}
+
+render()
+
 registerServiceWorker()

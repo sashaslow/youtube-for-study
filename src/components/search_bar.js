@@ -15,7 +15,7 @@ class SearchBar extends Component {
     super(props)
     this.state = { value: '' }
   }
-  
+
   render() {
     return (
       <div className="search-bar">
@@ -30,7 +30,7 @@ class SearchBar extends Component {
       </div>
     )
   }
-  onInputChange (value) {
+  onInputChange(value) {
     this.setState({ value })
     this.props.onGetTracks(value)
   }
