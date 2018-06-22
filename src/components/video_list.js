@@ -8,22 +8,14 @@ import {
   VideosImg,
 } from '../styles/video_list'
 
-const ConnectedVideo = connect(state => ({
-  store: state,
-}))(Video)
-
-const ConnectedVideosTitle = connect(state => ({
-  store: state,
-}))(VideosTitle)
-
 class VideoList extends Component {
   render() {
     return (
       <VideosContainer>
-        {this.props.store.videos.map((videos, index) => (
-          <ConnectedVideo
+        {this.props.videos.map((videos, index) => (
+          <Video
             key={videos.etag}
-            onClick={event => {
+            onClick={() => {
               this.props.onChangeCurrentVideo(videos)
             }}>
             <VideosImg
@@ -31,10 +23,8 @@ class VideoList extends Component {
               innerRef={x => (videos.img = x)}
               src={videos.snippet.thumbnails.default.url}
             />
-            <ConnectedVideosTitle key={index}>
-              {videos.snippet.title}
-            </ConnectedVideosTitle>
-          </ConnectedVideo>
+            <VideosTitle key={index}>{videos.snippet.title}</VideosTitle>
+          </Video>
         ))}
       </VideosContainer>
     )
@@ -43,7 +33,7 @@ class VideoList extends Component {
 
 export default connect(
   state => ({
-    store: state,
+    videos: state.videos,
   }),
   dispatch => ({
     onChangeCurrentVideo: video => {

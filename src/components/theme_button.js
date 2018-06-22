@@ -7,7 +7,7 @@ class ThemeButton extends Component {
   render() {
     return (
       <StyledThemeButton
-        onClick={themes =>
+        onClick={() =>
           this.props.onChangeTheme(!this.props.store.themes.isDark)
         }>
         {this.props.store.themes.isDark ? 'light' : 'dark'}

@@ -3,10 +3,6 @@ import { connect } from 'react-redux'
 import { Iframe } from '../styles/Iframe'
 import { VideoDetailContainer, VideoDetailText } from '../styles/video_details'
 
-const ConnectedVideoDetailText = connect(state => ({
-  store: state,
-}))(VideoDetailText)
-
 const VideoDetail = ({ currentVideo }) => {
   if (!currentVideo) {
     return <div>Loading...</div>
@@ -19,18 +15,14 @@ const VideoDetail = ({ currentVideo }) => {
       <div>
         <Iframe src={url} />
       </div>
-      <ConnectedVideoDetailText>
+      <VideoDetailText>
         <div>{currentVideo.snippet.title}</div>
         <div>{currentVideo.snippet.description}</div>
-      </ConnectedVideoDetailText>
+      </VideoDetailText>
     </VideoDetailContainer>
   )
 }
 
-export default connect(
-  state => ({
-    store: state,
-    currentVideo: state.currentVideo[0],
-  }),
-  dispatch => ({})
-)(VideoDetail)
+export default connect(state => ({
+  currentVideo: state.currentVideo[0],
+}))(VideoDetail)

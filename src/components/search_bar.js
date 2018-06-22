@@ -6,21 +6,16 @@ import { dark } from '../styles/themes/dark'
 import { asyncGetTracks } from '.././actions/videos'
 import { ThemeProvider } from 'styled-components'
 
-const ConnectedInput = connect(state => ({
-  store: state,
-}))(Input)
-
 class SearchBar extends Component {
   constructor(props) {
     super(props)
     this.state = { value: '' }
   }
-
   render() {
     return (
       <div className="search-bar">
         <ThemeProvider theme={this.props.store.themes.isDark ? dark : light}>
-          <ConnectedInput
+          <Input
             debounceTimeout={500}
             placeholder="just type here something"
             value={this.state.value}
